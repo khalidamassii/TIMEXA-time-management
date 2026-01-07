@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Time Management Test</title>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="Style.css">
+
+<style>
+    .test-box {
+        background: white;
+        padding: 30px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        max-width: 600px;
+        margin: auto;
+    }
+   
+    .error-text {
+        color: red;
+        
+    }
+</style>
+</head>
+
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-5">
+        <div class="container">
+            <a class="navbar-brand" href="MidHome.html" style="color: #d5b0cc;">TIMEXA</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto text-center">
+                    <li class="nav-item"><a class="nav-link" href="MidHome.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="aboutUs.html">About us</a></li>
+                    <li class="nav-item"><a class="nav-link" href="success stories.html">Success Stories</a></li>
+                    <li class="nav-item"><a class="nav-link" href="Learning.html">Learning hub</a></li>
+                    <li class="nav-item"><a class="nav-link" href="Assisstment.html">Self assessment</a></li>
+                    <li class="nav-item"><a class="nav-link" href="workshop&events.html">Workshop</a></li>
+                    <li class="nav-item"><a class="nav-link" href="self-Check.html">self-Check</a></li>
+                    <li class="nav-item"><a class="nav-link" href="ContactUs.html">Contact us</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+<div class="container">
+    <div class="test-box text-center">
+
+        <h2 class="mb-4">Time Management Test</h2>
+
+        <form>
+            <p>1) Do you plan your day before starting it?</p>
+            <input type="radio" name="q1" value="1"> Yes<br>
+            <input type="radio" name="q1" value="0"> No<br>
+            <span id="error1" class="error-text"></span> <br>
+
+            <p>2) When you have a task with a deadline:</p>
+            <input type="radio" name="q2" value="1"> I start early<br>
+            <input type="radio" name="q2" value="0"> I delay it<br>
+            <span id="error2" class="error-text"></span> <br>
+
+            <p>3) Do you break big tasks into smaller ones?</p>
+            <input type="radio" name="q3" value="1"> Yes<br>
+            <input type="radio" name="q3" value="0"> No<br>
+            <span id="error3" class="error-text"></span> <br>
+
+            <p>4) While working, do you control distractions?</p>
+            <input type="radio" name="q4" value="1"> Yes<br>
+            <input type="radio" name="q4" value="0"> No<br>
+            <span id="error4" class="error-text"></span> <br>
+
+            <p>5) Do you usually finish your tasks on time?</p>
+            <input type="radio" name="q5" value="1"> Yes<br>
+            <input type="radio" name="q5" value="0"> No<br>
+            <span id="error5" class="error-text"></span> <br>
+
+            <button type="button" class="btn btn-dark" onclick="calculateTimeManagementScore()">
+                Submit
+            </button>
+        </form>
+
+        <p id="result" class="mt-4 fw-bold" style="font-size: 18px;"></p>
+
+    </div>
+</div>
+
+<div id="IT">
+    <p style="font-size: 20px; text-align: center; font-weight: bold; color: #d5b0cc; margin-bottom: 8px;">Contact Us</p>
+    <p style="color: #fff; text-align: center; margin-bottom: 8px; font-size: 18px;">Mobile number: +962798160312</p>
+    <p style="text-align:center; color: #fff;">© 2025 Timexa - Master Time, Elevate Success</p>
+</div>
+
+<script>
+function calculateTimeManagementScore() {
+    
+    for(let k=1; k<=5; k++){
+        document.getElementById("error"+k).innerText = "";
+    }
+    document.getElementById("result").innerText = "";
+
+    let totalScore = 0;
+    let allAnswered = true; 
+
+    for (let i = 1; i <= 5; i++) {
+        let options = document.getElementsByName("q" + i);
+        let answered = false;
+
+        for (let j = 0; j < options.length; j++) {
+            if (options[j].checked) {
+                totalScore += parseInt(options[j].value);
+                answered = true;
+                break;
+            }
+        }
+
+     
+        if (!answered) {
+            document.getElementById("error" + i).innerText = "* Please select an answer";
+            allAnswered = false;
+        }
+    }
+ 
+    if (allAnswered == false) {
+        return; 
+    }
+
+    let message = "";
+    if (totalScore >= 4) {
+        message = "Excellent time management ⏱️";
+        document.getElementById("result").style.color = "green";
+    } else if (totalScore >= 2) {
+        message = "Average time management";
+        document.getElementById("result").style.color = "orange";
+    } else {
+        message = "Needs serious improvement";
+        document.getElementById("result").style.color = "red";
+    }
+
+    document.getElementById("result").innerText = 
+        "Your score: " + totalScore + "/5\n" + message;
+}
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

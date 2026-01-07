@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Self Assessment - Timexa</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="Style.css">
+
+    <style>
+        .error-msg { 
+            color: red; 
+         }
+        #IT { background: #111; padding: 20px; margin-top: 50px; }
+        .assessment-container {
+            background: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+    </style>
+</head>
+
+
+<body>
+     <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-5">
+        <div class="container">
+            <a class="navbar-brand" href="MidHome.html" style="color: #d5b0cc;">TIMEXA</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto text-center">
+                    <li class="nav-item"><a class="nav-link" href="MidHome.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="aboutUs.html">About us</a></li>
+                    <li class="nav-item"><a class="nav-link" href="success stories.html">Success Stories</a></li>
+                    <li class="nav-item"><a class="nav-link" href="Learning.html">Learning hub</a></li>
+                    <li class="nav-item"><a class="nav-link" href="Assisstment.html">Self assessment</a></li>
+                    <li class="nav-item"><a class="nav-link" href="workshop&events.html">Workshop</a></li>
+                    <li class="nav-item"><a class="nav-link" href="self-Check.html">self-Check</a></li>
+                    <li class="nav-item"><a class="nav-link" href="ContactUs.html">Contact us</a></li>
+                   
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+
+
+<div class="container mt-5 assessment-container">
+
+    <p id="time" class="text-end fw-bold text-muted"></p>
+
+    <h1 class="text-center">Self Assessment</h1>
+    <p class="text-center fw-bold">Check your productivity level</p>
+    <hr>
+
+    <form>
+
+        <h2 class="h4">Personal Info</h2>
+
+        <div class="mb-3">
+            <label>Name:</label>
+            <input type="text" id="name" class="form-control w-75">
+            <span id="errName" class="error-msg"></span>
+        </div>
+
+        <div class="mb-3">
+            <label>Age:</label>
+            <input type="number" id="age" class="form-control w-75">
+            <span id="errAge" class="error-msg"></span>
+        </div>
+
+        <hr>
+
+        <h2 class="h4">Habits</h2>
+
+        <p>1. Do you set daily goals?</p>
+        <input type="radio" name="goal" value="High"> Yes <br>
+        <input type="radio" name="goal" value="Low"> No <br>
+        <span id="errGoal" class="error-msg"></span>
+
+        <p class="mt-3">2. What should you improve?</p>
+        <input type="checkbox" class="skill" value="Time"> Time <br>
+        <input type="checkbox" class="skill" value="Focus"> Focus <br>
+        <input type="checkbox" class="skill" value="Team"> Teamwork <br>
+        <span id="errSkill" class="error-msg"></span>
+
+        <hr>
+
+        <h2 class="h4">Reflection</h2>
+        <textarea id="note" class="form-control" rows="3"></textarea>
+        <span id="errNote" class="error-msg"></span>
+
+        <div class="text-center mt-4">
+            <button type="button" onclick="checkForm()" class="btn btn-dark px-5">
+                Submit
+            </button>
+            <button type="reset" class="btn btn-outline-secondary px-5">
+                Clear
+            </button>
+        </div>
+
+        <div class="mt-5">
+            <h2 class="h4 text-primary">Result:</h2>
+            <textarea id="result" class="form-control bg-light" rows="6" readonly></textarea>
+        </div>
+
+    </form>
+</div>
+    <div id="IT">
+        <p style="font-size: 20px; text-align: center; font-weight: bold; color: #d5b0cc; margin-bottom: 8px;">Contact Us</p>
+        <p style="color: #fff; text-align: center; margin-bottom: 8px; font-size: 18px;">Mobile number: +962798160312</p>
+        <p style="text-align:center; color: #fff;">© 2025 Timexa - Master Time, Elevate Success</p>
+    </div>
+
+<script>
+ 
+    document.getElementById("time").innerHTML =
+        "Date: " + new Date().toLocaleString();
+
+    function checkForm() {
+
+        
+        let err = document.getElementsByClassName("error-msg");
+        for (let i of err) i.innerHTML = "";
+
+       
+        let name = document.getElementById("name").value;
+        let age = document.getElementById("age").value;
+        let goalVal = document.querySelector('input[name="goal"]:checked');
+        let skillList = document.querySelectorAll(".skill:checked");
+        let note = document.getElementById("note").value;
+
+        let ok = true;
+
+       
+        if (name == "") {
+            document.getElementById("errName").innerHTML = "Enter name";
+            ok = false;
+        }
+
+        if (age == "" || age < 16 || age > 45) {
+            document.getElementById("errAge").innerHTML = "Age 16 - 45 only";
+            ok = false;
+        }
+
+        if (!goalVal) {
+            document.getElementById("errGoal").innerHTML = "Choose one";
+            ok = false;
+        }
+
+        if (skillList.length == 0) {
+            document.getElementById("errSkill").innerHTML = "Select one";
+            ok = false;
+        }
+
+        if (note == "") {
+            document.getElementById("errNote").innerHTML = "Write something";
+            ok = false;
+        }
+
+        if (ok) {
+            let tip = (goalVal.value == "High")
+                ? "Good job! Keep going."
+                : "Try planning your day better.";
+
+            let text = "Name: " + name + "\n";
+            text += "Age: " + age + "\n";
+            text += "Goal level: " + goalVal.value + "\n";
+            text += "Skills: ";
+
+            skillList.forEach(s => text += s.value + " ");
+
+            text += "\nTip: " + tip;
+
+            document.getElementById("result").value = text;
+
+            alert("Done!");
+        }
+    }
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>
+

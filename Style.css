@@ -1,0 +1,36 @@
+body {
+    font-family: Georgia, serif;
+    background: #e6d5cb;
+    margin: auto;
+    padding: auto;
+}
+
+header {
+    background: #111;
+    padding: 10px 0;
+    text-align: center;
+}
+
+header nav a {
+    color: #d5b0cc;
+    margin: 15px;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+h1, h2, h3 {
+    color: #a8759a;
+    font-weight: bold;
+
+}
+
+#IT{
+ background: #111;
+ padding: 20px ;
+ margin-top: 50px;
+}
+header nav a:hover {
+    text-decoration: underline;
+}
+
